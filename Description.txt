@@ -1,0 +1,27 @@
+NOLA Bytes
+
+NOLA Bytes is your go-to guide for discovering the best restaurants in New Orleans. 
+Whether you're a local looking for a new favorite spot or a visitor exploring the 
+city's incredible food scene, NOLA Bytes makes it easy to find and share dining experiences.
+What NOLA Bytes Offers:
+
+    - Find Restaurants: Browse a curated list of restaurants across New Orleans, 
+      complete with reviews, ratings, and helpful details.
+    - Write Reviews: Share your thoughts on your favorite meals and see what others 
+      are saying.
+    - User Profiles: Create an account to save your reviews, manage your login info, 
+      and keep track of the restaurants you've tried.
+
+Behind the Scenes:
+
+    PostgreSQL: A reliable database to handle restaurant info, user accounts, and reviews.
+    Docker: Makes setting up and running the app quick and seamless.
+    Tomcat: Runs the backend, handling everything from login requests to displaying restaurant lists.
+    HTML & CSS: Keeps the design clean and easy to use on any device.
+    Selenium Testing: Ensures the site works smoothly by simulating how people interact with it.
+    Java Backend Testing: Keeps the app's core features running flawlessly.
+
+With NOLA Bytes, we set out to build something simple yet powerful. It’s not flashy—it’s practical, responsive, 
+and focused on what matters most: helping you find great food and share your experiences.
+
+Explore New Orleans one bite at a time with NOLA Bytes!
