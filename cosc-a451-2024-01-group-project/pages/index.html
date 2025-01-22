@@ -1,0 +1,82 @@
+<!--
+    Author: Michael Boomgaart
+    Date Created:03/21/24
+    Editors: Michael Boomgaart
+    Date Last Edited: 04/06/24
+    Changes: changed how the stylesheet is referenced to prevent browser cashing
+             also hamburger
+    Purpose: Creates the 'Home' page for NolaBytes
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>NolaBytes</title>
+    <script>
+        document.write('<link rel="stylesheet" href="main.css?v=' + Date.now() + '">');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="logo"><a href="HomePage">NolaBytes</a>🍔</div>
+    <div class="navigation-buttons" id="nav-buttons">
+        <nav class="navigation">
+            <ul>
+                <li><a href="signInPage.html">Sign In</a></li>
+                <li><a href="signUpPage.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="user-info">
+        <p id="username-display">usernameTag<span class="profile-icon">👤</span></p>
+        <div class="dropdown-menu">
+            <a href="ServletUserInformation">My Account</a>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+    <div class="search-container">
+        <input id="main-search" onkeydown="returnSearchString()"
+               placeholder="Search..." type="text">
+    </div>
+
+    <!-- Image carousel -->
+    <div class="image-carousel">
+        <div class="carousel-images">
+            <img class="carousel-image visible" src="images/food1.jpg">
+            <img class="carousel-image" src="images/food3.jpg">
+            <img class="carousel-image" src="images/food4.jpeg">
+            <!-- Add more images as needed -->
+        </div>
+        <div class="carousel-indicator">
+            <span class="indicator-bar active"></span>
+            <span class="indicator-bar"></span>
+            <span class="indicator-bar"></span>
+            <!-- Add more indicators as needed -->
+        </div>
+    </div>
+
+    <div class="categories-container">
+        <div class="category-card">categoryContent</div>
+        <div class="category-card">categoryContent</div>
+        <div class="category-card">categoryContent</div>
+        <div class="category-card">categoryContent</div>
+        <div class="category-card">categoryContent</div>
+        <div class="category-card">categoryContent</div>
+        <div class="category-card">categoryContent</div>
+        <div class="category-card">categoryContent</div>
+        <div class="category-card">categoryContent</div>
+    </div>
+</main>
+<footer class="footer">
+    <p>© 2024 NolaBytes. All rights reserved.</p>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

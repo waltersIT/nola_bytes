@@ -1,0 +1,92 @@
+<!--
+    Author: Michael Boomgaart
+    Date Created: 04/04/24
+    Editors: Boris Alarcon, Michael Boomgaart, Jamil Sharif
+    Date Last Edited: 05/03/24, 4/15/24, 04/08/24
+    Changes: Significantly improved the page design and data retrieval using ServletUserInformation.java including realName, username, and reviews.
+    Purpose: Serves as a medium for signing out, deleting account, and will house delete reviews functionality
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Account Details - NolaBytes</title>
+    <script>
+        document.write('<link rel="stylesheet" href="main.css?v=' + Date.now() + '">');
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="logo"><a href="HomePage">NolaBytes</a>🍔</div>
+    <div class="user-info">
+        usernameTag
+        <span class="profile-icon">👤</span>
+        <div class="dropdown-menu">
+            <!-- <a href="ServletUserInformation">My Account</a> -->
+            <a href="ServletUserList">View Other Users</a>
+        </div>
+    </div>
+</header>
+
+<section class="account-information">
+    <h1 class="subheader">Personal Information</h1>
+    <p1 class="paragraph"><strong>Name:</strong> realnameTag</p1>
+    <p1 class="paragraph"><strong>Username:</strong> usernameTag</p1>
+    <p1 class="paragraph"><strong>Review Count:</strong> reviewAmountTag</p1>
+</section>
+
+
+<main class="account-options">
+    <section class="account-actions">
+        <button class="action-btn" data-message="Are you sure you want to sign out?"
+                onclick="signOut()">Sign Out
+        </button>
+        <button class="action-btn" data-message="Are you sure you want to delete your account?"
+                onclick="location.href='deleteAccount.html'">Delete Account
+        </button>
+        <button class="action-btn" data-message="Are you sure you want to change your password?"
+                onclick="location.href='changePassword.html'">Change Password
+        </button>
+        <button class="action-btn" data-message="Are you sure you want to change your username?"
+                onclick="location.href='changeUsername.html'">Change Username
+        </button>
+        <button class="action-btn" data-message="Are you sure you want to change your name?"
+                onclick="location.href='changeName.html'">Change Name
+        </button>
+    </section>
+    <div class="edit-review">
+        <div class="edit-review-container" id="edit-review-id">
+            <div class="form-container">
+                <button class="close-review-btn" id="closing-edit-review" onclick="closeEditReviewPopup()" >Close</button> 
+                <p>Edit a review for *restaurant*</p>
+                <form id="edit-review-form" action="ServletEditReview">
+                <div class="rate">
+                    <input type="radio" id="one-star" name="rate" value="5" unchecked5>
+                    <label for="one-star">One Star</label>
+                    <input type="radio" id="two-stars" name="rate" value="4" unchecked4>
+                    <label for="two-stars">Two Stars</label>
+                    <input type="radio" id="three-stars" name="rate" value="3" unchecked3>
+                    <label for="three-stars">Three Stars</label>
+                    <input type="radio" id="four-stars" name="rate" value="2" unchecked2>
+                    <label for="four-stars">Four Stars</label>
+                    <input type="radio" id="five-stars" name="rate" value="1" unchecked1 required>
+                    <label for="five-stars">Five Stars</label>
+                </div>
+                <textarea rows="5" cols="60" name="edit-review-text" required>Thoughts:</textarea><br>
+                <button type="submit">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>    
+</main>
+
+<section class="account-information">
+    <h1 class="subheader">My Reviews</h1>
+    <!--ReviewToken-->
+</section>
+
+<script src="main.js"></script>
+</body>
+</html>

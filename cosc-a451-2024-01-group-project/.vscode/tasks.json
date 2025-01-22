@@ -1,0 +1,73 @@
+// Author: Abigail Iliff
+// Date Created: 3/16/2024
+// Editors: Abigail Iliff, Sebastian
+// Date Last edited: 3/22/2024
+// Purpose: json task file to build portions, and the entirety, of the project
+// changes: Added a 5th method to stop the docker container if its running
+
+
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "1. Build Project", //the tasks name
+            "type": "shell", //determines that the task will be run as a shell command
+            "dependsOrder": "sequence",
+            "dependsOn": [   //when this task is run, it will run all the tasks listed here
+                "3. Build All Java Files",
+                "2. Open HTML File",
+                "4. Open Servlet Test",
+            ],
+            "group": {
+                "kind": "build",   //"ctrl+shift+b" #1 -- runs the "Build Project" task
+                "isDefault": false //allows us to run build command in any file
+            }
+        },
+        {
+            "label": "2. Open HTML File", //the tasks name
+            "type": "shell", //determines that the task will be run as a shell command
+            //${workspaceFolder} -- specifies the path of the folder open in vscode)
+            "command": "${workspaceFolder}/scripts/launch_entry_point.sh", //when the task is run, go into the shell file and complete the commands listed
+            "problemMatcher": [],
+            "isBackground": true,
+            "group": {
+                "kind": "build",   //"ctrl+shift+b" #2 -- runs the "Open HTML File" task
+                "isDefault": false //allows us to run build command in any file
+            }
+        },
+        {
+            "label": "3. Build All Java Files", //the tasks name
+            "type": "shell", //determines that the task will be run as a shell command
+            //${workspaceFolder} -- specifies the path of the folder open in vscode)
+            "command": "${workspaceFolder}/scripts/build_all.sh", //when the task is run, go into the shell file and complete the commands listed
+            "problemMatcher": [], 
+            "group": {
+                "kind": "build",   //"ctrl+shift+b" #3 -- runs the "Build All Java Files" task
+                "isDefault": false //allows us to run build command in any file
+            }
+        },
+        {
+            "label": "4. Open Servlet Test", //the tasks name
+            "type": "shell", //determines that the task will be run as a shell command
+            //${workspaceFolder} -- specifies the path of the folder open in vscode)
+            "command": "${workspaceFolder}/scripts/launch_servlet_test.sh", //when the task is run, go into the shell file and complete the commands listed
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",   //"ctrl+shift+b" #4 -- runs the "Open Servlet Test" task
+                "isDefault": false //allows us to run build command in any file
+            }
+        },
+
+        {
+            "label": "5. Stop Docker Container", //the tasks name
+            "type": "shell", //determines that the task will be run as a shell command
+            //${workspaceFolder} -- specifies the path of the folder open in vscode)
+            "command": "${workspaceFolder}/scripts/stop_container.sh", //when the task is run, go into the shell file and complete the commands listed
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",   //"ctrl+shift+b" #4 -- runs the "Open Servlet Test" task
+                "isDefault": false //allows us to run build command in any file
+            }
+        }
+    ]
+}

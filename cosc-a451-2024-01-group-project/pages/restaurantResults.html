@@ -1,0 +1,248 @@
+<!--
+    Author: Matthew Levin
+    Date Created: 04/04/24
+    Editors: Boris Alarcon, Matthew Levin, Michael Boomgaart, Hannah Patton, Jada Farrell
+    Date Last Edited: 5/4/2024, 04/30/24
+    Changes: Added add-restaurant section and fixed the conflict with edit-restaurant
+    Added close button to leave a review popup
+    Purpose: holds all the search result information and review information
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>NolaBytes</title>
+    <script>
+        document.write('<link rel="stylesheet" href="main.css?v=' + Date.now() + '">');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="logo"><a href="HomePage">NolaBytes</a>🍔</div>
+    <div class="user-info">
+        usernameTag
+        <span class="profile-icon">👤</span>
+        <div class="dropdown-menu">
+            <a href="ServletUserInformation">My Account</a>
+            <a href="ServletUserList">View Other Users</a>
+        </div>
+    </div>
+</header>
+
+<div class="search-container">
+    <input id="main-search" onkeydown="returnSearchString()"
+           placeholder="Search..." type="text">
+</div>
+
+<main class="results-content">
+    <div class="restaurants-column">
+        <!--Add Restaurant Section-->
+        <div class="add-restaurant">
+            <button class="add-restaurant-btn" id="adding-restaurant" onclick="openRestaurantPopup()"
+                    style="justify-content: left;">Add Restaurant
+            </button>
+            <div class="add-restaurant-container" id="add-restaurant-id">
+                <div class="form-container" style="padding: 30px; margin-bottom: 15px">
+                    <button class="close-restaurant-btn" id="closing-add-restaurant" onclick="closeRestaurantPopup()">
+                        Close
+                    </button>
+
+                    <h3>Add a Restaurant!</h3>
+                    <form action="ServletAddRestaurant" class="add-restaurant-form" id="add-restaurant-form"
+                          method="get">
+                        <div style="padding: 0 15px">
+                            <label class="add-restaurant-label1" for="restaurantName">*Restaurant Name:</label>
+                            <input class="restaurant-input1" id="restaurantName" name="restaurantName" required=""
+                                   type="text">
+
+                            <label class="add-restaurant-label1" for="phone">Phone Number:</label>
+                            <input class="restaurant-input1" id="phone" name="phone"
+                                   placeholder="(555) 555-5555"
+                                   type="text">
+
+                            <label class="add-restaurant-label1" for="address">*Address:</label>
+                            <input class="restaurant-input1" id="address" name="address"
+                                   pattern="\d+\s[a-zA-Z\s.]+\s[A-Z]{2}\s\d{5}"
+                                   placeholder="123 Main St Anycity US 12345"
+                                   required
+                                   type="text">
+
+                            <label class="add-restaurant-label1" for="categories">Category:</label><br>
+                            <select class="select-box" id="categories" name="categories" required>
+                                <option value="None">None</option>
+                                <option value="American">American</option>
+                                <option value="Asian Fusion">Asian Fusion</option>
+                                <option value="Bar">Bar</option>
+                                <option value="Barbeque/BBQ">Barbeque/BBQ</option>
+                                <option value="Breakfast & Brunch">Breakfast & Brunch</option>
+                                <option value="Buffets">Buffets</option>
+                                <option value="Burgers">Burgers</option>
+                                <option value="Cafes">Cafes</option>
+                                <option value="Cafeteria">Cafeteria</option>
+                                <option value="Cajun/Creole">Cajun/Creole</option>
+                                <option value="Caribbean">Caribbean</option>
+                                <option value="Chicken Wings">Chicken Wings</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Colombian">Colombian</option>
+                                <option value="Delis">Delis</option>
+                                <option value="Dim Sum">Dim Sum</option>
+                                <option value="Fast Food">Fast Food</option>
+                                <option value="French">French</option>
+                                <option value="Hot Dogs">Hot Dogs</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="Korean">Korean</option>
+                                <option value="Latin American">Latin American</option>
+                                <option value="Lebanese">Lebanese</option>
+                                <option value="Mediterranean">Mediterranean</option>
+                                <option value="Mexican">Mexican</option>
+                                <option value="Middle Eastern">Middle Eastern</option>
+                                <option value="New American">New American</option>
+                                <option value="New Mexican Cuisine">New Mexican Cuisine</option>
+                                <option value="Peruvian">Peruvian</option>
+                                <option value="Pizza">Pizza</option>
+                                <option value="Pop-Up Restaurants">Pop-Up Restaurants</option>
+                                <option value="Ramen">Ramen</option>
+                                <option value="Salad">Salad</option>
+                                <option value="Sandwiches">Sandwiches</option>
+                                <option value="Seafood">Seafood</option>
+                                <option value="Senegalese">Senegalese</option>
+                                <option value="Soul Food">Soul Food</option>
+                                <option value="Southern">Southern</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="Steakhouses">Steakhouses</option>
+                                <option value="Sushi Bars">Sushi Bars</option>
+                                <option value="Tacos">Tacos</option>
+                                <option value="Tapas/Small Plates">Tapas/Small Plates</option>
+                                <option value="Thai">Thai</option>
+                                <option value="Trinidadian">Trinidadian</option>
+                                <option value="Turkish">Turkish</option>
+                                <option value="Vegan">Vegan</option>
+                                <option value="Venezuelan">Venezuelan</option>
+                                <option value="Vietnamese">Vietnamese</option>
+                            </select><br>
+
+                            <label class="add-restaurant-label1" for="website">Website:</label>
+                            <input class="restaurant-input1" id="website" name="website" pattern="https://.*"
+                                   placeholder="https://example.com" type="url"><br>
+                        </div>
+
+                        <div style="padding: 0 15px">
+                            <label class="add-restaurant-label1">Hours:</label><br>
+                            <label for="mondayOpenHours">• Monday:&nbsp;</label>
+                            <input class="hour-input1" id="mondayOpenHours" name="monOpenHours" type="time">
+                            <label for="mondayClosingHours">- </label><input class="hour-input1" id="mondayClosingHours"
+                                                                             name="monCloseHours" type="time"><br>
+
+                            <label for="tuesdayOpenHours">• Tuesday:&nbsp;</label>
+                            <input class="hour-input1" id="tuesdayOpenHours" name="tueOpenHours" type="time">
+                            <label for="tuesdayClosingHours">- </label><input class="hour-input1"
+                                                                              id="tuesdayClosingHours"
+                                                                              name="tueCloseHours" type="time"><br>
+
+                            <label for="wednesdayOpenHours">• Wednesday:&nbsp;</label>
+                            <input class="hour-input1" id="wednesdayOpenHours" name="wedOpenHours" type="time">
+                            <label for="wednesdayClosingHours">- </label><input class="hour-input1"
+                                                                                id="wednesdayClosingHours"
+                                                                                name="wedCloseHours" type="time"><br>
+
+                            <label for="thursdayOpenHours">• Thursday:&nbsp;</label>
+                            <input class="hour-input1" id="thursdayOpenHours" name="thurOpenHours" type="time">
+                            <label for="thursdayClosingHours">- </label><input class="hour-input1"
+                                                                               id="thursdayClosingHours"
+                                                                               name="thurCloseHours"
+                                                                               type="time"><br>
+                            <label for="fridayOpenHours">• Friday:&nbsp;</label>
+                            <input class="hour-input1" id="fridayOpenHours" name="friOpenHours" type="time">
+                            <label for="fridayClosingHours">- </label><input class="hour-input1" id="fridayClosingHours"
+                                                                             name="friCloseHours" type="time"><br>
+
+                            <label for="saturdayOpenHours">• Saturday:&nbsp;</label>
+                            <input class="hour-input1" id="saturdayOpenHours" name="SatOpenHours" type="time">
+                            <label for="saturdayClosingHours">- </label><input class="hour-input1"
+                                                                               id="saturdayClosingHours"
+                                                                               name="SatCloseHours"
+                                                                               type="time"><br>
+                            <label for="sundayOpenHours">• Sunday:&nbsp;</label>
+                            <input class="hour-input1" id="sundayOpenHours" name="SunOpenHours" type="time">
+                            <label for="sundayClosingHours">- </label><input class="hour-input1" id="sundayClosingHours"
+                                                                             name="SunCloseHours" type="time"><br>
+                        </div>
+                        <button type="submit" style="position: absolute; translate: 0 415px">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Edit Restaurant Section-->
+        <div class="edit-restaurant">
+            <button class="edit-restaurant-btn" id="editing-restaurant" onclick="openEditRestaurantPopup()">Edit
+                Restaurant
+            </button>
+            <div class="edit-restaurant-container" id="edit-restaurant-id">
+                <div class="form-container">
+                    <button class="close-edit-restaurant-btn" id="closing-restaurant"
+                            onclick="closeEditRestaurantPopup()">
+                        Close
+                    </button>
+                    <p>Edit *restaurant*</p>
+                    <form action="ServletEditRestaurant" class="edit-restaurant-form" id="restaurant-form">
+                        <div class="edit">
+                            <label for="newName">Name:</label>
+                            <input id="newName" name="newName" type="text" required>
+                            <label for="newPhoneNumber">Phone Number:</label>
+                            <input id="newPhoneNumber" name="newPhoneNumber" type="number" required>
+                            <label for="newAddress">Address:</label>
+                            <input id="newAddress" name="newAddress" type="text" required>
+                            <label for="newCategory">Category:</label>
+                            <input id="newCategory" name="newCategory" type="text" required>
+                            <label for="newWebsite">Website:</label>
+                            <input id="newWebsite" name="newWebsite" type="text" required>
+                        </div>
+                        <button type="submit">Save Changes</button>
+                    </form>
+                    <div class="restaurants-column">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--RestaurantToken-->
+    </div>
+    <div class="reviews-column">
+        <div class="leave-review">
+            <button class="leave-review-btn" id="leaving-review" onclick="openReviewPopup()">Leave Review</button>
+            <div class="leave-review-container" id="leave-review-id">
+                <div class="form-container">
+                    <button class="close-review-btn" id="closing-review" onclick="closeReviewPopup()">Close</button>
+                    <p>Leave a review for *restaurant*</p>
+                    <form action="ServletLeaveReview" id="review-form">
+                        <div class="rate">
+                            <input id="one-star" name="rate" type="radio" value="5">
+                            <label for="one-star">One Star</label>
+                            <input id="two-stars" name="rate" type="radio" value="4">
+                            <label for="two-stars">Two Stars</label>
+                            <input id="three-stars" name="rate" type="radio" value="3">
+                            <label for="three-stars">Three Stars</label>
+                            <input id="four-stars" name="rate" type="radio" value="2">
+                            <label for="four-stars">Four Stars</label>
+                            <input id="five-stars" name="rate" required type="radio" value="1">
+                            <label for="five-stars">Five Stars</label>
+                        </div>
+                        <textarea cols="60" name="review-text" placeholder="Thoughts:" required rows="5"
+                                  type="text"></textarea><br>
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--ReviewToken-->
+    </div>
+</main>
+<script src="main.js"></script>
+</body>
+</html>

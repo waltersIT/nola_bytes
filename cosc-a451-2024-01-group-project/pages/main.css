@@ -1,0 +1,1320 @@
+/*
+    Author: Michael Boomgaart
+    Date Created: 03/21/24
+    Editors: Boris Alarcon, Michael Boomgaart, Patrick Carter, Jada Farrell
+    Date Last Edited: 5/4/2024, 4/19/2024, 4/15/24, 04/06/24, 4/30/24
+    Changes: Added styles for add-restaurant feature
+    Added styles for public profile page.
+    Added styles for account information page including options, headers/paragraphs, and reviews formatting.
+    Purpose: Serves as the main stylesheet for all HTML files
+*/
+
+/* main.css */
+
+/* constant settings */
+:root {
+    --main-bg-color: #EAEAEA;
+    --header-bg-color: #A970FF;
+    --category-bg-color: #FFFFFF;
+    --text-color: #333333;
+    --header-height: 60px;
+    --main-font: 'Open Sans', sans-serif;
+    --nav-bg-color: #F4A952; /* New goldish color */
+    --accent-color: #B393BE; /* New purple accent color */
+}
+
+/* Do not touch this ^ unless you are Michael Or Sebastian... please*/
+
+/* styles for index.html */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font);
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+}
+
+.navigation-buttons {
+    visibility: hidden;
+}
+
+.show-nav-buttons {
+    visibility: visible;
+}
+
+.navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Vertically center the nav items */
+}
+
+.navigation li {
+    padding: 0 15px;
+    position: relative; /* Position relative for pseudo-elements */
+}
+
+.navigation a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative; /* For pseudo-element positioning */
+    overflow: hidden; /* To contain pseudo-elements */
+}
+
+.navigation a::after {
+    background-color: var(--accent-color); /* Purple color for the underline effect */
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: bottom right;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.navigation a:hover, .navigation a:focus {
+    background-color: rgba(179, 147, 190, 0.2); /* Lighter purple for hover background */
+    color: inherit; /* Inherit text color so that it is black in regular restaurant cards and white in selected cards */
+}
+
+.navigation a:hover::after, .navigation a:focus::after {
+    transform: translateX(-50%) scaleX(1);
+    transform-origin: bottom left; /* This ensures the underline grows from left to right */
+    background-color: black; /* I believe this ensures that the hover underline effect is black unless otherwise specified */
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* To repeat(2, 1fr) for 2x2 layout */
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px; /* Set a max width for better control over the card sizes */
+    margin: auto; /* Center the grid in the main content */
+}
+
+.header {
+    background-color: var(--header-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: var(--header-height);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo a {
+    color: white; /* Ensures the link is white */
+    text-decoration: none; /* Removes underline from links */
+    transition: color 0.3s ease; /* Smooth color transition for hover effect */
+}
+
+.logo a:hover, .logo a:focus {
+    /*background: -webkit-linear-gradient(60deg, #ffa500, #ff4500);*/
+    /*-webkit-background-clip: text;*/
+    /*-webkit-text-fill-color: transparent;*/
+    color: #cbc4c4; /* Changes color to nav background color on hover/focus */
+    text-decoration: none; /* Ensures no underline appears on hover/focus */
+}
+
+.user-info {
+    position: relative; /* Needed for absolute positioning of the dropdown */
+    font-size: 18px;
+    color: white;
+}
+
+.user-info:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: whitesmoke;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-menu a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px; /* Smaller font size for dropdown links */
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--nav-bg-color);
+    color: white;
+}
+
+.profile-icon {
+    margin-left: 10px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#main-search {
+    width: 70%;
+    padding: 10px;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add drop shadow */
+    border: none; /* Remove border */
+    border-radius: 5px;
+}
+
+.image-carousel {
+    position: relative;
+    max-width: 650px; /* Adjust as needed */
+    /* width: 100%; */
+    margin: 20px auto 20px; /* Added bottom margin to lower the category cards */
+}
+
+.carousel-images {
+    width: 100%;
+    overflow: hidden;
+}
+
+.image-carousel .carousel-images {
+    position: relative;
+    width: 100%;
+}
+
+.carousel-image {
+    width: 100%;
+    display: none; /* Hide all images initially */
+}
+
+.carousel-image.visible {
+    display: block; /* Show the visible image */
+}
+
+.carousel-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
+}
+
+.indicator-bar {
+    width: 5px;
+    background: white;
+    margin-bottom: 5px;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.indicator-bar.active {
+    opacity: 1;
+}
+
+.categories-container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.category-card {
+    background: #ffffff;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #a855f7 0%, #d94873 100%) border-box;
+    border: 3px solid transparent;
+}
+
+.footer {
+    background-color: var(--text-color);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    clear: both; /* Ensures it doesn't overlap with floated elements */
+    bottom: 0;
+    width: 100%;
+}
+
+/* -------------------------------------------------------------- */
+/* Styles for the delete account page: */
+.delete-account-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 5px;
+}
+
+.delete-account-container h1 {
+    color: var(--text-color);
+}
+
+.delete-account-container button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#confirm-delete {
+    background-color: #d9534f; /* Bootstrap's btn-danger color */
+    color: white;
+}
+
+#confirm-delete:hover {
+    background-color: #c9302c; /* Darken the color on hover */
+}
+
+#cancel {
+    background-color: #f0f0f0; /* A light grey background */
+}
+
+#cancel:hover {
+    background-color: #e0e0e0; /* A slightly darker grey on hover */
+}
+
+#delete-account-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    margin-top: 1.5em; /* Additional space above form */
+}
+
+/* -------------------------------------------------------------- */
+/* Styles for the change password page: */
+.change-password-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 5px;
+}
+
+.change-password-container h1 {
+    color: var(--text-color);
+}
+
+.change-password-container button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#confirm-change-password {
+    background-color: #1300a1;
+    color: white;
+}
+
+#confirm-change-password:hover {
+    background-color: #0e0078; /* Darken the color on hover */
+}
+
+#change-password-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    margin-top: 1.5em; /* Additional space above form */
+}
+
+/* Styles for the change name page */
+
+.change-name-container {
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.change-name-container h1 {
+    color: var(--text-color);
+}
+
+.change-name-container p {
+    margin-bottom: 1em; /* Space between the text and the form */
+}
+
+#change-name-form {
+    margin-top: 20px;
+}
+
+#change-name-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+}
+
+#confirm-change-name {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: var(--header-bg-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#confirm-change-name:hover {
+    background-color: #8d47f5;
+}
+
+/* Styles for the change username page */
+
+.change-username-container {
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.change-username-container h1 {
+    color: var(--text-color);
+}
+
+.change-username-container p {
+    margin-bottom: 1em; /* Space between the text and the form */
+}
+
+#change-username-form {
+    margin-top: 20px;
+}
+
+#change-username-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+}
+
+#confirm-change-username {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: var(--header-bg-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#confirm-change-username:hover {
+    background-color: #8d47f5;
+}
+
+/* -------------------------------------------------------------- */
+/* Styles for the sign in page: */
+.sign-in-container {
+    text-align: center;
+    max-width: 300px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.welcome-box-container {
+    text-align: center;
+    max-width: 100%;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.welcome-box {
+    background-color: var(--header-bg-color);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    max-width: 90%; /* Set a max-width so it does not span the full page */
+    box-sizing: border-box;
+    display: inline-block; /* Allows the box to grow with content */
+}
+
+.welcome-box h2 {
+    font-size: 24px; /* Adjust font size as necessary to fit on one line */
+    margin: 0;
+    white-space: nowrap; /* This will ensure the text stays on one line */
+    overflow: hidden; /* Ensures that excess text doesn't spill out of the container */
+}
+
+.error-box-container {
+    text-align: center;
+    max-width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    visibility: hidden
+}
+
+.error-box {
+    background-color: palevioletred;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    max-width: 100%; /* Set a max-width so it does not span the full page */
+    box-sizing: border-box;
+    display: inline-block; /* Allows the box to grow with content */
+}
+
+.error-box p {
+    font-size: 13px; /* Adjust font size as necessary to fit on one line */
+    margin: 0;
+    white-space: nowrap; /* This will ensure the text stays on one line */
+    overflow: hidden; /* Ensures that excess text doesn't spill out of the container */
+}
+
+.show-error-box {
+    visibility: visible;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 2em; /* Adds space between the welcome box and form */
+}
+
+
+#sign-in-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    margin-top: 1.5em; /* Additional space above form */
+}
+
+#sign-in-form input[type="text"],
+#sign-in-form input[type="password"] {
+    margin: 10px 0; /* Ensure there's space between the inputs */
+}
+
+#sign-in-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: var(--header-bg-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#sign-in-form button:hover {
+    background-color: #8d47f5;
+}
+
+#go-to-sign-up {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: var(--header-bg-color); /* Use the purple accent color for text */
+    margin-bottom: 20px; /* Provide space below the sign-up button */
+    border: 1px solid #ccc; /* Subtle border to match the input fields */
+    cursor: pointer;
+}
+
+#go-to-sign-up:hover {
+    background-color: #e0e0e0;
+}
+
+/* -------------------------------------------------------------- */
+/* Styles for the Sign Out page: */
+
+#go-to-sign-in {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--header-bg-color);
+    color: white;
+    margin-bottom: 20px; /* Provide space below the sign-up button */
+    border: 1px solid #ccc; /* Subtle border to match the input fields */
+    cursor: pointer;
+}
+
+#go-to-sign-in:hover {
+    background-color: #8d47f5;
+}
+
+/* -------------------------------------------------------------- */
+/* Styles for the sign up page: */
+
+.sign-up-container {
+    /* ... same styles as sign-in container ... */
+    text-align: center;
+    max-width: 300px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+#sign-up-form input {
+    /* ... same styles as sign-in form inputs ... */
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    margin-top: 1.5em;
+}
+
+#sign-up-form button {
+    /* ... same styles as sign-in form proceed button ... */
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: var(--header-bg-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#sign-up-form button:hover {
+    background-color: #8d47f5;
+}
+
+.sign-up-container h2 {
+    margin-bottom: 0.5em; /* Space between the heading and the form */
+}
+
+.sign-up-container p {
+    margin-bottom: 1em; /* Space between the text and the first input */
+}
+
+#back-to-sign-in {
+    padding: 10px;
+    width: 100%; /* Full width to match the other buttons */
+    background-color: #f0f0f0; /* Light gray background for distinction */
+    color: var(--header-bg-color);
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Subtle border to match the input fields */
+    margin-top: 5px; /* Spacing from the proceed button */
+    cursor: pointer; /* Cursor pointer to indicate clickability */
+}
+
+#back-to-sign-in:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+.card-container {
+    display: grid;
+    padding: 15px;
+    flex-wrap: wrap;
+}
+
+.card {
+    padding: 5px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.restaurant-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 700px;
+    gap: 20px;
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #a855f7 0%, #d94873 100%) border-box;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Add drop shadow */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Add background-color to transition */
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    border: 3px solid #0000;
+    box-shadow: 2px 4px 8px rgba(0.4, 0.4, 0.4, 0.6);
+}
+
+.restaurant-card a::after {
+    background-color: black; /* Make sure the web link underline stays black before disappearing for restaurant cards */
+}
+
+.selected-card {
+    /* background-image: linear-gradient(135deg, #a855f7 0%, #d94873 100%); */
+    border-style: solid;
+    color: white; /* Change text color to white on hover */
+    border-color: #777474;
+    box-shadow: 2px 4px 8px rgba(0.4, 0.4, 0.4, 0.6);
+
+    background: linear-gradient(58deg, #b583a3, #a02cdc, #d94873, #a855f7);
+    background-size: 240% 240%;
+    animation: gradient-animation 36s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+.selected-card a {
+    color: white;
+}
+
+.selected-card a:hover::after {
+    color: white; /* Make sure the text stays white for a selected card */
+    background-color: white; /* Make sure the underline stays white for a selected card */
+}
+
+.selected-card a::after {
+    background-color: white; /* Make sure the web link underline stays white before disappearing for selected cards */
+}
+
+
+.selected-card:hover {
+    transform: translateY(-5px);
+    border: 2px solid #777474;
+    /*border-color: #777474;*/
+    transition: transform 0.2s ease;
+    box-shadow: 2px 4px 8px rgba(0.4, 0.4, 0.4, 0.6);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.restaurant-card h3 {
+    margin-top: 0;
+    /*color: #9c89ff;*/
+}
+
+.restaurant-card p {
+    margin: 5px 0;
+}
+
+.restaurant-card .restaurant-info {
+    font-size: 0.9em;
+    margin-right: auto;
+}
+
+.restaurant-card .hours {
+    margin-top: 5px;
+    font-size: 0.9em;
+    margin-right: auto;
+    width: 400px;
+}
+
+.restaurant-card a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.review-card {
+    border: 2px solid #ddd;
+    border-radius: 5px; /* Rounded corners for the card */
+    width: 700px;
+    gap: 20px;
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #d94873 0%, #a855f7 100%) border-box;
+    padding: 15px;
+    max-width: 700px; /* Maximum width of the review card */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Add background-color to transition */
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    border: 3px solid #0000;
+    box-shadow: 2px 4px 8px rgba(0.4, 0.4, 0.4, 0.6);
+}
+
+.review-info {
+    margin-bottom: 2em; /* Space between the review info and the review text */
+}
+
+.review-info h3 {
+    font-size: 1.2em; /* Larger font size for reviewer name */
+    margin-bottom: 0.3em; /* Space after the reviewer name */
+    margin-top: .5em;
+    /*color: #9c89ff; !* Color for reviewer name *!*/
+}
+
+.review-info h3:hover {
+    color: #8e8e8e; /* Changes color to nav background color on hover/focus */
+    transition: color 0.3s ease;
+}
+
+.review-info p {
+    padding: 0px;
+    font-size: 1em; /* Standard font size for the rating */
+}
+
+.review {
+    font-size: 0.9em; /* Smaller font size for review text */
+    line-height: 1.5; /* Line height for better readability */
+    /*color: #333; !* Darker text color for contrast *!*/
+    border-top: 1px solid #e0e0e0; /* Separator between review info and text */
+    padding-top: 10px; /* Space above the review text */
+}
+
+.review p {
+    padding: 10px;
+}
+
+/* Add additional styles for a visual cue that these are reviews, not restaurants */
+.review-card:hover:after {
+    content: "Review";
+    background-color: var(--nav-bg-color);
+    color: white;
+    font-size: 0.8em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    position: absolute;
+    top: -10px;
+    left: +10px;
+    transform: translateX(-50%);
+}
+
+/*DON'T TOUCH*/
+.results-content {
+    display: flex; /* Using flex instead of inline-flex for better control */
+    justify-content: center; /* Center children horizontally */
+    align-items: flex-start; /* Align children to the start of the cross axis */
+    gap: 20px; /* Space between the columns */
+    padding: 20px; /* Optional padding for some space inside the container */
+}
+
+.restaurant-column,
+.reviews-column {
+    flex: 1; /* Each column will take up equal space */
+    max-width: 700px; /* Maximum width for each column, adjust as needed */
+    /* Removed float properties since we're using flexbox */
+    display: flex; /* Enables the use of flexbox inside the columns */
+    flex-direction: column; /* Stack children vertically */
+    gap: 20px; /* Space between cards inside the columns */
+}
+
+/* Ensure that cards do not stretch across the entire column,
+   but instead take up only as much width as they need */
+.card, .review-card {
+    width: auto;
+    max-width: 100%; /* Ensures they do not exceed their container's width */
+}
+
+#more {
+    display: none;
+}
+
+/* -------------------------------------------------------------- */
+/* Styles for the add restaurant pop up: */
+
+.add-restaurant {
+    top: 100%;
+    height: auto;
+}
+
+.add-restaurant-btn {
+    top: 50%;
+    font: var(--main-font);
+    border: 2px solid #ddd;
+    border-radius: 5px; /* Rounded corners for the card */
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #d94873 0%, #a855f7 100%) border-box;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Add background-color to transition */
+}
+
+.add-restaurant-btn:hover {
+    transform: translateY(-2px);
+    border: 3px solid #0000;
+    box-shadow: 2px 4px 8px rgba(0.4, 0.4, 0.4, 0.6);
+}
+
+.add-restaurant-container {
+    /* ... same styles as sign-in container ... */
+    text-align: left;
+    width: 740px;
+    margin-left: 15px;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, margin-top 0.4s;
+    align-content: center;
+}
+
+.open-add-restaurant-container {
+    height: 100%;
+    opacity: 100%;
+    visibility: visible;
+}
+
+.add-restaurant-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.add-restaurant-label1 {
+    font-size: 11pt;
+}
+
+.restaurant-input1 {
+    margin: 10px 0;
+    width: 200px;
+    display: block;
+    padding: 10px;
+    border: solid 2px var(--header-bg-color);
+    font-size: 11pt;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(.64, .09, .08, 1);
+    background-size: 200px 100%;
+    background-color: #f8f8f8;
+}
+
+.restaurant-input1:focus {
+    box-shadow: none;
+    outline: 0;
+    background-position: 0 0;
+    border: solid 2px #70b3ff;
+}
+
+.hour-input1 {
+    font: var(--main-font);
+    margin: 3px 0;
+    display: inline-block;
+    padding: 2px;
+    border: 0;
+    font-size: 11pt;
+    transition: all 0.3s cubic-bezier(.64, .09, .08, 1);
+    background-size: 200px 100%;
+    background-color: #f8f8f8;
+}
+
+.select-box {
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0 30px 0 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    line-height: 36px; /* Adjusted height */
+    height: 36px; /* Adjusted height */
+    margin: 10px;
+    background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" width="10" height="6"><path fill="black" d="M0 0l5 6 5-6z"/></svg>') no-repeat calc(100% - 10px) center;
+    background-size: 10px 6px;
+}
+
+
+/* -------------------------------------------------------------- */
+/* Styles for the review page: */
+
+.leave-review {
+    top: 100%;
+    height: 20px;
+}
+
+.leave-review-btn {
+    top: 50%;
+    font: var(--main-font);
+    border: 2px solid #ddd;
+    border-radius: 5px; /* Rounded corners for the card */
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #d94873 0%, #a855f7 100%) border-box;
+    visibility: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Add background-color to transition */
+}
+
+.leave-review-btn:hover {
+    transform: translateY(-2px);
+    border: 3px solid #0000;
+    box-shadow: 2px 4px 8px rgba(0.4, 0.4, 0.4, 0.6);
+}
+
+
+.show-leave-review-btn {
+    visibility: visible;
+}
+
+.leave-review-container {
+    /* ... same styles as sign-in container ... */
+    position: relative;
+    text-align: left;
+    max-width: 650px;
+    margin: auto;
+    margin-top: 0px;
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, margin-top 0.4s;
+}
+
+.open-leave-review-container {
+    visibility: visible;
+    margin-top: 100px;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+textarea {
+    font-family: var(--main-font);
+}
+
+/* --------------- */
+/* Code for stars */
+.rate {
+    margin: 0;
+    padding: 0;
+}
+
+.rate {
+    float: left;
+    height: 80px;
+}
+
+.rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+
+.rate:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 60px;
+    color: #ccc;
+}
+
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* --------------- */
+/*Styles for profile/account pages*/
+.account-information {
+    display: flex;
+    flex-direction: column;
+}
+
+.subheader {
+    color: var(--header-bg-color);
+    font-style: italic;
+    font-size: 24px;
+    padding: 3% 5%;
+    padding-bottom: 1%;
+}
+
+.subheader2 {
+    color: var(--text-color);
+    font-style: italic;
+    font-size: 32px;
+    text-align: center;
+    padding-top: 15%;
+}
+
+.paragraph {
+    font-size: 18px;
+    padding: 0 10%;
+    padding-bottom: 10px;
+}
+
+.paragraph2 {
+    font-size: 18px;
+    padding: 0 3%;
+    text-align: center;
+}
+
+.account-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.account-actions {
+    margin-top: 20px;
+}
+
+.action-btn {
+    background-color: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #e1e1e1;
+}
+
+.action-btn:hover::after {
+    content: attr(data-message);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #555;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    z-index: 5;
+}
+
+.my-reviews {
+    width: 80%;
+    margin-top: 8px;
+    padding: 0 10%;
+}
+
+/* --------------- */
+/*Styles for view users page*/
+.view-user-information {
+    width: 200px;
+    /* margin: 10px auto;  Centers the div elements vertically */
+    text-align: center; /* Centers the content horizontally */
+    border: 1px black solid;
+    padding: 10px;
+}
+
+.user-paragraph {
+    font-size: 18px;
+    padding: 10px;
+}
+
+.view-user-column {
+    max-width: 700px; /* Maximum width for each column, adjust as needed */
+    display: flex; /* Enables the use of flexbox inside the columns */
+    flex-direction: column; /* Stack children vertically */
+    gap: 20px; /* Space between cards inside the columns */
+}
+
+/* --------------- */
+/*Styles for Personal Review Cards*/
+#my-review-restaurant-name {
+    color: purple;
+}
+
+/* --------------- */
+/*Styles for Edit Review Cards*/
+.edit-review {
+    top: 100%;
+    height: 0px;
+}
+
+.edit-review-container {
+    /* ... same styles as sign-in container ... */
+    position: relative;
+    text-align: left;
+    max-width: 75%;
+    margin: auto;
+    margin-top: 0px;
+    z-index: 1;
+    transform: scale(0.1);
+    visibility: hidden;
+    transition: margin-top 0.4s;
+}
+
+.open-edit-review-container {
+    visibility: visible;
+    margin-top: 100px;
+    transform: scale(1);
+}
+
+/* --------------- */
+/* Style for edit restaurant */
+.edit-restaurant {
+    top: 100%;
+    height: 20px;
+}
+
+.edit-restaurant-btn {
+    top: 75%;
+    font: var(--main-font);
+    border: 2px solid #ddd;
+    border-radius: 5px; /* Rounded corners for the card */
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, #d94873 0%, #a855f7 100%) border-box;
+    visibility: hidden;
+    translate: 630px -23px; /* we really desperate now */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Add background-color to transition */
+}
+
+.edit-restaurant-btn:hover {
+    transform: translateY(-2px);
+    border: 3px solid #0000;
+    box-shadow: 2px 4px 8px rgba(0.4, 0.4, 0.4, 0.6);
+}
+
+
+.show-edit-restaurant-btn {
+    visibility: visible;
+}
+
+.edit-restaurant-container {
+    /* ... same styles as sign-in container ... */
+    position: relative;
+    text-align: left;
+    max-width: 650px;
+    margin: auto;
+    margin-top: 0px;
+    z-index: 1;
+    translate: 360px -200px; /* sigh */
+    transform: scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, margin-top 0.4s;
+}
+
+.open-edit-restaurant-container {
+    visibility: visible;
+    margin-top: 100px;
+    transform: scale(1);
+}
+
+.edit-restaurant-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+/* -------------------------------------------------------------- */
+/* Styles for the delete account page: */
+.delete-review-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 5px;
+}
+
+.delete-review-container h1 {
+    color: var(--text-color);
+}
+
+.delete-review-container button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#confirm-delete {
+    background-color: #d9534f; /* Bootstrap's btn-danger color */
+    color: white;
+}
+
+#confirm-delete:hover {
+    background-color: #c9302c; /* Darken the color on hover */
+}
+
+#cancel {
+    background-color: #f0f0f0; /* A light grey background */
+}
+
+#cancel:hover {
+    background-color: #e0e0e0; /* A slightly darker grey on hover */
+}

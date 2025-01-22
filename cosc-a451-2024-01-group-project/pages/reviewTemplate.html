@@ -1,0 +1,28 @@
+<!--
+    Author: Matthew Levin
+    Date Created: 04/04/24
+    Editors: Matthew Levin, Michael Boomgaart
+    Date Last Edited: 4/19/24, 04/05/24
+    Changes: Implemented an 'onclick' function when reviewer's name is clicked to be redirected to their profile.
+    Purpose: Provides a template structure to dynamically insert html
+             for database information (for the review results)
+-->
+
+<div class="card-container">
+    <div class="review-card">
+        <div class="card">
+            <div class="review-info">
+                <h3 id="userIdNum" onclick="redirectToProfile(this.id)">reviewerName</h3>
+                <p><strong>Rating: </strong>reviewerRating</p>
+                <div id="my-review-restaurant-name"> 
+                    <!--RestaurantNameToken-->
+                </div>
+            </div>
+            <div class="review">
+                revContent
+            </div>
+            <!--EditReviewButton-->
+            <!--DeleteReviewButton-->
+        </div>
+    </div>
+</div>

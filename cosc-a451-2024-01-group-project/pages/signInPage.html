@@ -1,0 +1,41 @@
+<!--
+    Author: Michael Boomgaart
+    Date Created:03/23/24
+    Editors: Michael Boomgaart
+    Date Last Edited: 03/23/24
+    Purpose: Creates the 'Sign-In' page for NolaBytes
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Sign In - Nola Bytes</title>
+    <link href="main.css" rel="stylesheet">
+</head>
+<body>
+<div class="welcome-box-container">
+    <div class="welcome-box">
+        <h2>Welcome to Nola Bytes!</h2>
+    </div>
+</div>
+<div class="error-box-container" id="error-message">
+    <div class="error-box">
+        <p>Invalid Username or Password. Please Try Again.</p>
+    </div>
+</div>
+<div class="sign-in-container">
+    <div class="form-container">
+        <p>Sign in or Sign Up to continue to Nola Bytes</p>
+        <form id="sign-in-form">
+            <input id="username" placeholder="Username" required type="text">
+            <input id="password" placeholder="Password" required type="password">
+            <button onclick="verifyUserLogin()" type="submit">Proceed</button>
+        </form>
+        <button id="go-to-sign-up">Sign Up</button>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

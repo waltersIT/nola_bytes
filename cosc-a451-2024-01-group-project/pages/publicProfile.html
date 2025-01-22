@@ -1,0 +1,48 @@
+<!--
+    Author: Boris Alarcon
+    Date Created: 04/19/24
+    Editors: Boris Alarcon, Michael Boomgaart
+    Date Last Edited: 4/19/24
+    Changes: Copied from accountDetails.html and modified to be a publicly safe profile.
+    Purpose: Serves as a page to view other people's public profiles and their reviews. Copy from accountDetails.html.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Public Profile - NolaBytes</title>
+    <script>
+        document.write('<link rel="stylesheet" href="main.css?v=' + Date.now() + '">');
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="logo"><a href="HomePage">NolaBytes</a>🍔</div>
+    <div class="user-info">
+        myUsernameTag
+        <span class="profile-icon">👤</span>
+        <div class="dropdown-menu">
+            <a href="ServletUserInformation">My Account</a>
+            <a href="signout.html">Sign Out</a>
+            <a href="ServletUserList">View Other Users</a>
+        </div>
+    </div>
+</header>
+
+<section class="account-information">
+    <h1 class="subheader">User Information</h1>
+    <p1 class="paragraph"><strong>Name:</strong> realnameTag</p1>
+    <p1 class="paragraph"><strong>Username:</strong> usernameTag</p1>
+    <p1 class="paragraph"><strong>Review Count:</strong> reviewAmountTag</p1>
+</section>
+
+<section class="account-information">
+    <h1 class="subheader">Reviews</h1>
+    <!--ReviewToken-->
+</section>
+
+<script src="main.js"></script>
+</body>
+</html>

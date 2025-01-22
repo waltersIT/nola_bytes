@@ -1,0 +1,48 @@
+<!--
+    Author: Matthew Levin
+    Date Created:04/04/24
+    Editors: Matthew Levin, Michael Boomgaart
+    Date Last Edited: 04/05/24
+    Changes:
+    Purpose: Provides a template structure to dynamically insert html
+             for database information (for the restaurant results)
+-->
+<div class="card-container">
+    <div class="restaurant-card" id="IdNum" onclick="getReviewsFromDB(this.id)">
+        <div class="card">
+            <div class="restaurant-info">
+                <h3>Name</h3>
+                <p><strong>Phone:</strong> phoneNumber</p>
+                <p><strong>Address:</strong> address</p>
+                <p><strong>Category:</strong> category</p>
+                <p><strong>Website:</strong>
+                <p class="navigation"><a href=websiteUrl target="_blank">websiteUrl
+                    <!--                    <button id="go-to-website">Website</button>-->
+                </a></p>
+            </div>
+            <div class="hours">
+                <h3>Hours:</h3>
+                <ul>
+                    <li>Mon: hours[0]</li>
+                    <li>Tue: hours[1]</li>
+                    <li>Wed: hours[2]</li>
+                    <li>Thu: hours[3]</li>
+                    <li>Fri: hours[4]</li>
+                    <li>Sat: hours[5]</li>
+                    <li>Sun: hours[6]</li>
+                    <!-- Add more days as needed -->
+                </ul>
+            </div>
+            <!--div class="edit-restaurant" id="edit-restaurant">
+                <button class="edit-restaurant-btn" id="editing-restaurant" onclick="openRestaurantPopUp()">Edit
+                    Restaurant
+                </button>
+            </div-->
+            <div class="delete-rev" id="del-res">
+                <button class="delete-review-btn" id="IdNum" onclick="deleteRestaurant(this.id)">Delete Restaurant
+                </button>
+            </div>
+            <!-- DeleteRestaurantButton -->
+        </div>
+    </div>
+</div>

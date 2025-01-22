@@ -1,0 +1,116 @@
+General Standards
+    File Headers
+        Each source file should contain a header with teh following information:
+            // Author: Joe Mama
+            // Editors: (most recent editor on top)
+            Sebastian Janikowski
+            Hugh Jackman
+            Tony Stark
+            Bruce Wayne
+            Clark kent
+            Drew Brees
+            A goat
+            Joe Mama
+            etc...
+
+            // Date Created:
+            1/29/2024
+
+            // Date Last Edited: (most recent edit date on top)
+            3/29/2024
+            3/14/2024
+            3/10/2024
+            2/30/2024
+            2/29/2024
+            2/18/2024
+            2/14/2024
+            1/30/2024
+            etc...
+
+            // Purpose:
+            to add stuff to a otherwise blank file because it looked lonely just sitting there
+
+            Heres a template to copy and paste into a file:
+            // Author:
+            // Date Created:
+            // Editors:
+            // Date Last Edited:
+            // Purpose:
+
+    Comments
+        - Write descriptive comments to add clarity
+            (the goal is to improve readability among peers)
+        - Comment above each function to briefly explain its:
+            - purpose
+            - inputs
+            - outputs
+            - and any side effects
+
+    Commit Messages
+        - Commit messages should be clear and informative to the best of your ability
+
+    Changelog
+        - At the bottom of each file, include a changelog that details significant changes,
+          the reasoning behind them, and any additional context that could be helpful for other people
+          who may edit the file.
+          (the idea is similar to that of patchnotes for games)
+        - Here is an example entry:
+            /*
+            Changelog:
+
+            [3/29/2024] - [Sebastian Janikowski]
+            - Change: [A description of the change(s)]
+            - Reason: [The reason for making the change(s)]
+            - Additional Notes: [Any additional information or context regarding the change
+              that could be helpful or useful]
+            */
+        - The idea is to write over each entry for every new commit of the file.
+          In other words, there should be a long list of changelogs. Only the one section as
+          Git tracks version history.
+        - The goal of this is to have a more detailed 'commit' message that can be referenced easily.
+          It complements the version control history by providing insights into the 'why' behind changes,
+          which is not always evident from diffs alone.
+        - Keep in mind that the changelog is NOT a substitute for good commit messages. The file-specific
+          changelog is an extra layer of documentation for clarity within the codebase itself.
+        - If the change is related to a Git issue, please put that within the reason for the change. Like so:
+            /*
+                Changelog:
+
+                [3/29/2024] - [Sebastian Janikowski]
+                - Change: [A description of the change]
+                - Reason: [Resolved Git issue #42]
+                - Additional Notes: [Any additional information or context regarding the change
+                that could be helpful or useful]
+            */
+
+----------------------------------------------------------------------------------------------------
+
+Collaboration Standards
+    Pull Requests
+        - When creating a pull request, please provide a summary of changes and context for reviewers
+        - Reviews should ensure that the proposed changes meet the projects standards BEFORE merging
+
+    Code Reviews
+        - Code Reviews are mandatory before merging any changes into 'Development' or 'dbInteraction.Main' branches.
+
+----------------------------------------------------------------------------------------------------
+
+General Coding Standards
+
+    Front End Specific Standards:
+        HTML Structure
+            - include <head> </head> tag with at the top of file example:
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                <meta charset="utf-8">
+                <link any style sheet here>
+                <head>
+
+
+    Back End Specific Standards:
+        Java Standards:
+            - Class names should be in lowerCamelCase
+            - Use meaningful variable names that convey the purpose of the variable
+
+----------------------------------------------------------------------
